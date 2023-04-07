@@ -1,12 +1,18 @@
+/***************************
+ * NAME: Onat Ribar
+ * STUDENT NR: 20210702099
+ * CSE 212 Assignment-6
+ ***************************/
 
 public class Laundry extends Services {
 
 	int clothingPieces;
-	final double laundryCost = 20;
+	double laundryCost;
 	
-	Laundry(int customerID, int clothingPieces, double laundryCost) {
-		this.customerID = customerID;
+	Laundry(int reservationID, int clothingPieces, double laundryCost) {
+		this.reservationID = reservationID;
 		this.clothingPieces = clothingPieces;
+		this.laundryCost = laundryCost;
 	}
 	
 	@Override

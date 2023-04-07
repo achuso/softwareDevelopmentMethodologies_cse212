@@ -1,12 +1,18 @@
+/***************************
+ * NAME: Onat Ribar
+ * STUDENT NR: 20210702099
+ * CSE 212 Assignment-6
+ ***************************/
 
 public class Spa extends Services {
 
 	private int days;
-	final double spaCost = 100;
+	double spaCost;
 	
-	Spa(int customerID, int days) {
-		this.customerID = customerID; // customerID from abstract class Services
+	Spa(int reservationID, int days, double spaCost) {
+		this.reservationID = reservationID;
 		this.days = days;
+		this.spaCost = spaCost;
 	}
 	
 	@Override
@@ -20,9 +26,9 @@ public class Spa extends Services {
 	}
 	
 	int getDays() {return this.days;}
-	double getSpaCost() {return this.spaCost;}
-	
 	void setDays(int days) {this.days = days;}
+	
+	double getSpaCost() {return this.spaCost;}
 	// no setter for spaCost because it is fixed at 100TL/day
 	
 }

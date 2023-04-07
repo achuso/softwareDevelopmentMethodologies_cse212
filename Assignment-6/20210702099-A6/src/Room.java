@@ -20,7 +20,6 @@ public class Room {
 	public String getRoomType() {return this.roomType;} 
 	public Boolean getHasBath() {return this.hasBath;} 
 	
-	
 	Room(String roomType, int dailyCost, int roomSize, Boolean hasBath) {
 		
 		this.roomType = roomType;

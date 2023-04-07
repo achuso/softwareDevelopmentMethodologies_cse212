@@ -12,6 +12,8 @@ public class Reservation extends Services {
 	private int reservationStart;
 	private int reservationEnd;
 	
+	static int totalNumberOfReservations = 0;
+	
 	public Reservation(String roomType, String hN, String rM, int rS, int rE) {
 		
 		// Create Room depending on given roomType using .equals()
@@ -33,18 +35,19 @@ public class Reservation extends Services {
 		setReservationStart(rS);
 		setReservationEnd(rE);
 
+		this.setReservationID(++totalNumberOfReservations);
 	}
 	
 	@Override
 	String getServiceType() {
-		return "Reservation";
+		return "Room booking";
 	}
 	
 	@Override
 	double calculateService() {
-		switch( getReservationMonth() ) {
+		switch( getReservationMonth().toLowerCase() ) {
 		// Double cost if reservation in June/July/August
-		case "June": case "July": case "August":
+		case "june": case "july": case "august":
 			return 2 * room.getCost() * ( getReservationEnd() - getReservationStart() );
 			
 		// Otherwise regular prices apply
@@ -53,7 +56,15 @@ public class Reservation extends Services {
 		}
 	}
 	
-	
+	void displayInfo() {
+		System.out.printf("\nReservation for a %s room in %s starts on "
+				+ "%s %d and ends on "
+				+ "%s %d. Reservation has a total cost of $%.0f.\n",
+				this.getRoom().getRoomType(), this.getHotelName(),
+				this.getReservationMonth(), this.getReservationStart(),
+				this.getReservationMonth(), this.getReservationEnd(), this.calculateService()
+				);
+	}
 	
 	// GETTERS FOR THE INSTANCE VARIABLES
 	
