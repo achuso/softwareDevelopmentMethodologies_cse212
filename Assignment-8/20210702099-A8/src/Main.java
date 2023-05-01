@@ -295,29 +295,21 @@ public class Main {
 			
 			case LIST_SERVICE_COST: // 10
 				ArrayList<Services> TempServices = new ArrayList<Services>();
-				CostComparator comparatorObj = new CostComparator(); // instantiated CostComparator
 				
-				// Add the identified Services among Calculables to the temporary array
+				// Add the identified Services among Calculables to the temporary array.
 				for(Calculable Service: CalculableArray)
 					if(Service instanceof Services)
 						TempServices.add((Services) Service);
 				
-				// Bubble Sort with costs
-				Boolean servicesArranged = false;
-				while(!servicesArranged) {
-					servicesArranged = true;
-					for(int i = 0; i < TempServices.size() - 1; i++) // Access 2 elements at once. The i-th index can never be the last index
-						if( comparatorObj.compare( TempServices.get(i), TempServices.get(i+1) ) == -1) {
-							Collections.swap(TempServices, i, i+1);
-							servicesArranged = false;
-					}
-				}
+				// Sorting in terms of cost in reverse so that it is in descending order.
+				Collections.sort(TempServices, Collections.reverseOrder(new CostComparator()));
 				
 				for(Services S: TempServices) {
 					System.out.printf("\n");
 					S.displayServiceInfo();
 				}
 				
+				TempServices = null;
 				System.out.printf("\n\n");
 				
 				break;
@@ -325,30 +317,20 @@ public class Main {
 			case LIST_RESERVATION_NAME: // 11
 				ArrayList<Reservation> TempReservations = new ArrayList<Reservation>();
 				
-				// Add the identified Reservations among Calculables to the temporary array
+				// Add the identified Reservations among Calculables to the temporary array.
 				for(Calculable R: CalculableArray)
 					if(R instanceof Reservation)
 						TempReservations.add((Reservation) R);
 				
-				// Bubble Sort with Strings (?)
-				Boolean reservationsArranged = false;
-				while(!reservationsArranged) {
-					reservationsArranged = true;
-					for(int i = 0; i < TempReservations.size() - 1; i++)
-						// Compare names of i-th and (i+1)-th hotel names. If i is alphabeticallly bigger, it returns positive, otherwise it is negative, the case for which we need to swap.
-						if( TempReservations.get(i).getHotelName().compareTo(TempReservations.get(i+1).getHotelName()) > 0 ) {
-							Collections.swap(TempReservations, i, i+1);
-							reservationsArranged = false;
-					}
-				}
+				// Sorting in ascending order, so alphabetically.
+				Collections.sort(TempReservations);
 				
 				for(Reservation R: TempReservations) {
-					System.out.printf("\n");
-					System.out.printf("Hotel Name: %s, ", R.getHotelName());
+					System.out.printf("\nHotel Name: %s, ", R.getHotelName());
 					R.displayServiceInfo();
 				}
 				
-				System.out.printf("\n\nn");
+				System.out.printf("\n\n");
 				
 				break;
 				
@@ -363,7 +345,6 @@ public class Main {
 				
 			}
 
-			
 		} while(menuInput != 12);
 		
 		scannerObj.close();
