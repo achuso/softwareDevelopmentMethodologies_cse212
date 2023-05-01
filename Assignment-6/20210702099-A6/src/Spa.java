@@ -7,12 +7,12 @@
 public class Spa extends Services {
 
 	private int days;
-	double spaCost;
+	private double spaCost;
 	
 	Spa(int reservationID, int days, double spaCost) {
-		this.reservationID = reservationID;
-		this.days = days;
-		this.spaCost = spaCost;
+		setReservationID(reservationID);
+		setDays(days);
+		setSpaCost(spaCost);
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class Spa extends Services {
 	void setDays(int days) {this.days = days;}
 	
 	double getSpaCost() {return this.spaCost;}
-	// no setter for spaCost because it is fixed at 100TL/day
+	void setSpaCost(double spaCost) {this.spaCost = spaCost;}
 	
 }
 

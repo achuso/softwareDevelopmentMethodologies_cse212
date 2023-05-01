@@ -1,7 +1,7 @@
 /***************************
  * NAME: Onat Ribar
  * STUDENT NR: 20210702099
- * CSE 212 Assignment-7
+ * CSE 212 Assignment-8
  ***************************/
 
 public class Spa extends Services {
@@ -24,9 +24,6 @@ public class Spa extends Services {
 	double calculateService() {
 		return getDays() * getSpaCost();
 	}
-	
-	@Override
-	public double getCost() {return calculateService();}
 	
 	int getDays() {return this.days;}
 	void setDays(int days) {this.days = days;}

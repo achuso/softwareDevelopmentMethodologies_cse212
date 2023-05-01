@@ -1,7 +1,7 @@
 /***************************
  * NAME: Onat Ribar
  * STUDENT NR: 20210702099
- * CSE 212 Assignment-7
+ * CSE 212 Assignment-8
  ***************************/
 
 public interface Calculable {

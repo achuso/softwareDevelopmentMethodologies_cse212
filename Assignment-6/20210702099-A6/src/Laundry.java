@@ -10,9 +10,9 @@ public class Laundry extends Services {
 	double laundryCost;
 	
 	Laundry(int reservationID, int clothingPieces, double laundryCost) {
-		this.reservationID = reservationID;
-		this.clothingPieces = clothingPieces;
-		this.laundryCost = laundryCost;
+		setReservationID(reservationID);
+		setClothingPieces(clothingPieces);
+		setLaundryCost(laundryCost);
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class Laundry extends Services {
 	void setClothingPieces(int clothingPieces) {this.clothingPieces = clothingPieces;}
 	
 	double getLaundryCost() {return this.laundryCost;}
-	// no setter for laundryCost because it is fixed at 20TL/item
+	void setLaundryCost(double laundryCost) {this.laundryCost = laundryCost;}
 	
 }
 

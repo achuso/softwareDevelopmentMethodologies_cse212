@@ -1,12 +1,13 @@
 /***************************
  * NAME: Onat Ribar
  * STUDENT NR: 20210702099
- * CSE 212 Assignment-7
+ * CSE 212 Assignment-8
  ***************************/
 
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ListIterator;
 
 enum MenuOptions {
@@ -20,7 +21,9 @@ enum MenuOptions {
 	ADD_EMPLOYEE("7.\tAdd an Employee"),
 	ADD_BILL("8\tAdd a Bill"),
 	MONTHLY_BALANCE("9.\tGet Monthly Balance"),
-	EXIT("10.\tExit");
+	LIST_SERVICE_COST("10.\tList all Services sorted based on cost"),
+	LIST_RESERVATION_NAME("11.\tList all Reservations sorted based on names"),
+	EXIT("12.\tExit");
 	
 	private final String menuPrompt;
 	
@@ -290,8 +293,66 @@ public class Main {
 				
 				break;
 			
+			case LIST_SERVICE_COST: // 10
+				ArrayList<Services> TempServices = new ArrayList<Services>();
+				CostComparator comparatorObj = new CostComparator(); // instantiated CostComparator
 				
-			case EXIT: // 10
+				// Add the identified Services among Calculables to the temporary array
+				for(Calculable Service: CalculableArray)
+					if(Service instanceof Services)
+						TempServices.add((Services) Service);
+				
+				// Bubble Sort with costs
+				Boolean servicesArranged = false;
+				while(!servicesArranged) {
+					servicesArranged = true;
+					for(int i = 0; i < TempServices.size() - 1; i++) // Access 2 elements at once. The i-th index can never be the last index
+						if( comparatorObj.compare( TempServices.get(i), TempServices.get(i+1) ) == -1) {
+							Collections.swap(TempServices, i, i+1);
+							servicesArranged = false;
+					}
+				}
+				
+				for(Services S: TempServices) {
+					System.out.printf("\n");
+					S.displayServiceInfo();
+				}
+				
+				System.out.printf("\n\n");
+				
+				break;
+			
+			case LIST_RESERVATION_NAME: // 11
+				ArrayList<Reservation> TempReservations = new ArrayList<Reservation>();
+				
+				// Add the identified Reservations among Calculables to the temporary array
+				for(Calculable R: CalculableArray)
+					if(R instanceof Reservation)
+						TempReservations.add((Reservation) R);
+				
+				// Bubble Sort with Strings (?)
+				Boolean reservationsArranged = false;
+				while(!reservationsArranged) {
+					reservationsArranged = true;
+					for(int i = 0; i < TempReservations.size() - 1; i++)
+						// Compare names of i-th and (i+1)-th hotel names. If i is alphabeticallly bigger, it returns positive, otherwise it is negative, the case for which we need to swap.
+						if( TempReservations.get(i).getHotelName().compareTo(TempReservations.get(i+1).getHotelName()) > 0 ) {
+							Collections.swap(TempReservations, i, i+1);
+							reservationsArranged = false;
+					}
+				}
+				
+				for(Reservation R: TempReservations) {
+					System.out.printf("\n");
+					System.out.printf("Hotel Name: %s, ", R.getHotelName());
+					R.displayServiceInfo();
+				}
+				
+				System.out.printf("\n\nn");
+				
+				break;
+				
+			case EXIT: // 12
 				System.out.printf("\nExiting, Goodbye!");
 				break;
 				
@@ -303,7 +364,7 @@ public class Main {
 			}
 
 			
-		} while(menuInput != 10);
+		} while(menuInput != 12);
 		
 		scannerObj.close();
 		

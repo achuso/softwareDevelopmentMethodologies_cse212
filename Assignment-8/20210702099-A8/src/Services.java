@@ -1,7 +1,7 @@
 /***************************
  * NAME: Onat Ribar
  * STUDENT NR: 20210702099
- * CSE 212 Assignment-7
+ * CSE 212 Assignment-8
  ***************************/
 
 public abstract class Services implements Calculable {
@@ -11,7 +11,14 @@ public abstract class Services implements Calculable {
 	abstract String getServiceType();
 	abstract double calculateService();
 	
+	public double getCost() {return calculateService();}
+	
 	void setReservationID(int reservationID) { this.reservationID = reservationID; }
 	int getReservationID() { return this.reservationID; }
+	
+	void displayServiceInfo() {
+		System.out.printf("Customer ID: %d, Service Type: %s, Cost: %.2f",
+				getReservationID(), getServiceType(), calculateService());
+	}
 	
 }

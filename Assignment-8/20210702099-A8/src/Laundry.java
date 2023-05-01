@@ -1,7 +1,7 @@
 /***************************
  * NAME: Onat Ribar
  * STUDENT NR: 20210702099
- * CSE 212 Assignment-7
+ * CSE 212 Assignment-8
  ***************************/
 
 public class Laundry extends Services {
@@ -24,9 +24,6 @@ public class Laundry extends Services {
 	double calculateService() {
 		return getClothingPieces() * getLaundryCost();
 	}
-	
-	@Override
-	public double getCost() {return calculateService();}
 	
 	int getClothingPieces() {return this.clothingPieces;}
 	void setClothingPieces(int clothingPieces) {this.clothingPieces = clothingPieces;}

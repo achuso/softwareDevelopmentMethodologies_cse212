@@ -1,10 +1,10 @@
 /***************************
  * NAME: Onat Ribar
  * STUDENT NR: 20210702099
- * CSE 212 Assignment-7
+ * CSE 212 Assignment-8
  ***************************/
 
-public class Reservation extends Services {
+public class Reservation extends Services implements Comparable<Reservation> {
 	
 	private String hotelName;
 	private Room room;
@@ -67,7 +67,12 @@ public class Reservation extends Services {
 	}
 	
 	@Override
-	public double getCost() {return calculateService();}
+	public int compareTo(Reservation R) {
+		// If alphabetically of higher order than R, return 1. If equal, return 0. Otherwise, return -1. Same return values like in string compareTo()
+		int comparison = this.getHotelName().compareTo(R.getHotelName());
+		return (comparison >= 0) ? ( (comparison == 0) ? 0 : 1) : -1;
+	}
+	
 	
 	// GETTERS FOR THE INSTANCE VARIABLES
 	

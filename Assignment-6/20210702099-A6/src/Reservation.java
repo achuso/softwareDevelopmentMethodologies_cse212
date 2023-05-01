@@ -35,7 +35,7 @@ public class Reservation extends Services {
 		setReservationStart(rS);
 		setReservationEnd(rE);
 
-		this.setReservationID(++totalNumberOfReservations);
+		setReservationID(++totalNumberOfReservations);
 	}
 	
 	@Override
