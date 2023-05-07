@@ -4,6 +4,9 @@
  * CSE 212 Assignment-9
  ***************************/
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Reservation extends Services implements Comparable<Reservation> {
 	
 	private String hotelName;
@@ -14,28 +17,75 @@ public class Reservation extends Services implements Comparable<Reservation> {
 	
 	static int totalNumberOfReservations = 0;
 	
-	public Reservation(String roomType, String hN, String rM, int rS, int rE) {
+	public Reservation(Scanner in) throws RoomTypeException, InputMismatchException {
 		
-		// Create Room depending on given roomType using .equals()
-		if(roomType.toLowerCase().equals("single"))
-			room  = new RoomSubclasses.Single();
-		else if(roomType.toLowerCase().equals("double"))
-			room  = new RoomSubclasses.Double(); 
-		else if(roomType.toLowerCase().equals("club"))
-			room  = new RoomSubclasses.Club(); 
-		else if(roomType.toLowerCase().equals("family"))
-			room  = new RoomSubclasses.Family(); 
-		else if(roomType.toLowerCase().equals("family with view"))
-			room  = new RoomSubclasses.FamilyView(); 
-		else if(roomType.toLowerCase().equals("suite"))
-			room  = new RoomSubclasses.Suite();
+		// Display the room options
+		System.out.printf("\nROOM INFOS:\n\n");
+		for(RoomTypes room: RoomTypes.values())
+			System.out.printf("Room Type: %s, Daily Cost: %d, Room Size: %d, Has Bath: %b \n",
+					room.getRoomType(), room.getDailyCost(), room.getRoomSize(), room.getHasBath() );
+						
+		// Receive input for reservation creation
+		System.out.printf("\nHotel Name: ");
+		this.setHotelName(in.nextLine());
 		
-		setHotelName(hN);
-		setReservationMonth(rM);
-		setReservationStart(rS);
-		setReservationEnd(rE);
+		String rT; // String placeholder for roomType to be put in constructor
+		while(true) {
+			try {
+				System.out.printf("Room Type: ");
+				rT = in.nextLine();
+				RoomTypeException.checkRoomType(rT);
+				
+				if(rT.compareToIgnoreCase(RoomTypes.SINGLE.getRoomType()) == 0)
+					this.setRoom(new RoomSubclasses.Single());
+				else if (rT.compareToIgnoreCase(RoomTypes.DOUBLE.getRoomType()) == 0)
+					this.setRoom(new RoomSubclasses.Double());
+				else if (rT.compareToIgnoreCase(RoomTypes.CLUB.getRoomType()) == 0)
+					this.setRoom(new RoomSubclasses.Club());
+				else if (rT.compareToIgnoreCase(RoomTypes.FAMILY.getRoomType()) == 0)
+					this.setRoom(new RoomSubclasses.Family());
+				else if (rT.compareToIgnoreCase(RoomTypes.FAMILY_WITH_VIEW.getRoomType()) == 0)
+					this.setRoom(new RoomSubclasses.FamilyView());
+				else if (rT.compareToIgnoreCase(RoomTypes.SUITE.getRoomType()) == 0)
+					this.setRoom(new RoomSubclasses.Suite());
+				
+				break;
+			} 
+			catch(RoomTypeException rte){
+				System.err.printf("%s\n", rte);
+			} 
+		}
+			
+		
+		System.out.printf("Reservation Month: ");
+		this.setReservationMonth(in.nextLine());
+		
+		while(true) {
+			try {
+				System.out.printf("Reservation Start: ");
+				this.setReservationStart(in.nextInt());
+				break;
+			}
+			catch(InputMismatchException ime) {
+				System.err.printf("Reservation Start must be a numeric value!\n");
+			}
+			finally { in.nextLine(); }
+		}
+		
+		while(true) {
+			try {
+				System.out.printf("Reservation End: ");
+				this.setReservationEnd(in.nextInt());
+				break;
+			}
+			catch(InputMismatchException ime) {
+				System.err.printf("Reservation End must be a numeric value!\n");
+			}
+			finally { in.nextLine(); }
+		}
 
 		setReservationID(++totalNumberOfReservations);
+		System.out.printf("\nReservation ID: %d is created!\n\n", Reservation.totalNumberOfReservations);
 	}
 	
 	@Override

@@ -11,24 +11,26 @@ public class Room {
 	private int roomSize;
 	private Boolean hasBath;
 	
-	// Getter and Setter for dailyCost
-	public void setCost(int x) {this.dailyCost = x;}
-	public int getCost() {return dailyCost;}
 
-	// Getters for every other instance variable
+	public void setCost(int x) {this.dailyCost = x;}
+	public void setRoomSize(int size) { this.roomSize = size; }
+	public void setRoomType(String type) { this.roomType = type; }
+	public void setHasBath(Boolean bath) { this.hasBath = bath; }
+
+	public int getCost() {return dailyCost;}
 	public int getRoomSize() {return this.roomSize;}
 	public String getRoomType() {return this.roomType;} 
 	public Boolean getHasBath() {return this.hasBath;} 
 	
 	Room(String roomType, int dailyCost, int roomSize, Boolean hasBath) {
 		
-		this.roomType = roomType;
+		setRoomType(roomType);
 		
 		setCost(dailyCost);
 		
-		this.roomSize = roomSize;
+		setRoomSize(roomSize);
 		
-		this.hasBath = hasBath;
+		setHasBath(hasBath);
 		
 	}
 	

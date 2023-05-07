@@ -27,7 +27,7 @@ public class Employees implements Calculable {
 				break;
 			}
 			catch(InputMismatchException IDnotNumeral) {
-				System.out.println("Employee ID should be an integer!");
+				System.err.println("Employee ID should be an integer!");
 			}
 			finally { in.nextLine(); } // Clear scanner for next input, either in try-catch
 		}
@@ -39,7 +39,7 @@ public class Employees implements Calculable {
 				break;
 			}
 			catch(InputMismatchException paymentNotNumeral) {
-				System.out.println("Monthly Payment should be a numeric value!");
+				System.err.println("Monthly Payment should be a numeric value!");
 			}
 			finally { in.nextLine(); }
 		}

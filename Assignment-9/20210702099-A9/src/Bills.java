@@ -25,7 +25,7 @@ public class Bills implements Calculable {
 				break;
 			}
 			catch(InputMismatchException BillAmount_NotNumeral ) {
-				System.out.printf("Bill Amount must be a numeric value!\n");
+				System.err.printf("Bill Amount must be a numeric value!\n");
 			}
 			finally { in.nextLine(); } // Scanner is cleared for a retry
 		}

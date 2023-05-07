@@ -25,8 +25,8 @@ enum RoomTypes {
 	}
 		
 	public String getRoomType() {return roomType;}
-	public int getDailyCost() {return dailyCost;}
-	public int getRoomSize() {return roomSize;}
+	public int getDailyCost() 	{return dailyCost;}
+	public int getRoomSize() 	{return roomSize;}
 	public Boolean getHasBath() {return hasBath;}
 		
 }

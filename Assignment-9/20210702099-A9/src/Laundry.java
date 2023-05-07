@@ -21,7 +21,7 @@ public class Laundry extends Services {
 				break; // Loop breaks if no exceptions thrown
 			}
 			catch(InputMismatchException IDnotNumeral) {
-				System.out.println("Reservation ID must be a numeral!");
+				System.err.printf("Reservation ID must be a numeric value!");
 			}
 			finally { in.nextLine(); }
 		}
@@ -33,7 +33,7 @@ public class Laundry extends Services {
 				break;
 			}
 			catch(InputMismatchException ClothesNotNumeral) {
-				System.out.println("Clothing Pieces must be a numeral!");
+				System.err.println("Clothing count must be a numeric value!");
 			}
 			finally {in.nextLine();}
 		}
