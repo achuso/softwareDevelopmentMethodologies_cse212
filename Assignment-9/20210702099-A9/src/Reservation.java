@@ -52,7 +52,7 @@ public class Reservation extends Services implements Comparable<Reservation> {
 				break;
 			} 
 			catch(RoomTypeException rte){
-				System.err.printf("%s\n", rte);
+				System.err.printf("Room Type is not valid!\n");
 			} 
 		}
 			
