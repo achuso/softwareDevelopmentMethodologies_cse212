@@ -1,0 +1,9 @@
+1 - Event Source: Buttons or menus act as event sources. Once the user interacts with them, they generate events.
+
+2 - Event Listeners: Objects. Registered to receive and handle some type of event. Listens for events to happen and responds accordingly.
+
+3 - Event Registration: Registers event source with the received events. Methods such as addActionListener(), addKeyListener() or addMouseListener().
+
+4 - Event Handling: Once user performs an action on the GUI component. For example, clicking on a button, event source generates an event. Event is then dispatched to the registered event listener -> MouseListener in this case.
+
+5 - Event Processing: Event listener's implementation code contains the code which handles the event. For the example above, if a button is clicked, a specific method is triggered.
